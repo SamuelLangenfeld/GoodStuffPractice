@@ -7,6 +7,7 @@ MVP ->
   Cleanup code, organize. Run ChatGPT over code, see if it could do better.
   Halfway decent UI. Check accessibility, make it pretty.
   Better error handling. Display errors/loading on UI.
+  Add linting, prettier
 
 STRETCH ->
   Create AWS lambda functions to handle Amadeus API calls

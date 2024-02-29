@@ -5,3 +5,7 @@
   display: inline;
   min-width: 200px;
 }
+
+.selected {
+  background-color: green;
+}

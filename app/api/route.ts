@@ -2,7 +2,7 @@ import secureAccessToken, {revalidateToken} from "../lib/secureAccessToken"
 
 const fetchFlights = async () => {
   const accessToken = await secureAccessToken()
-  const res = await fetch('https://test.api.amadeus.com/v1/shopping/flight-destinations?origin=MAD&oneWay=false&nonStop=false', {
+  const res = await fetch(`https://${process.env.flights_api_url}/v1/shopping/flight-destinations?origin=${process.env.origin}&oneWay=false&nonStop=false&duration=3%2C15`, {
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${accessToken}`
@@ -35,7 +35,9 @@ const secureFlights = async () => {
 
 export const revalidate = 1700
 
-export async function GET() {
+export async function GET(request: Request) {
+  const { searchParams } = new URL(request.url)
+  const id = searchParams.get('id')
   let flights
   try {
     flights = await secureFlights()

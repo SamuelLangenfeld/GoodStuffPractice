@@ -1,7 +1,7 @@
 let accessToken
 
 const fetchToken = async () => {
-  const res = await fetch('https://test.api.amadeus.com/v1/security/oauth2/token', {
+  const res = await fetch(`https://${process.env.flights_api_url}/v1/security/oauth2/token`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
@@ -14,7 +14,7 @@ const fetchToken = async () => {
 
 const secureAccessToken = async () => {
   if (!accessToken) {
-    revalidateToken()
+    await revalidateToken()
   }
   return accessToken
 }
@@ -22,7 +22,9 @@ const secureAccessToken = async () => {
 export const revalidateToken = async () => {
   try {
     let data = await fetchToken()
-    if (data.errors) {
+    if (data.errors || data.error) {
+      console.log('validate token error')
+      console.log(JSON.stringify(data))
       console.log('attempting another fetch for access token')
       data = await fetchToken()
     }

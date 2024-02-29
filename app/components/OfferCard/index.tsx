@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './styles.module.css'
 
-const OfferCard = ({ flight }) => {
+const OfferCard = ({ flight, airlines }) => {
   const { itineraries, price } = flight
   const departItinerary = itineraries[0]
   const returnItinerary = itineraries[1]
@@ -21,10 +21,13 @@ const OfferCard = ({ flight }) => {
         {`${origin} to ${destination}`} 
       </div>
       <div>
-        {new Date(departureDate).toDateString()} to {new Date(returnDate).toDateString()}
+        {new Date(departureDate).toLocaleDateString()} - {new Date(returnDate).toLocaleDateString()}
       </div>
       <div>
         Price: {`${total} ${currency}`}
+      </div>
+      <div>
+        {airlines.join(', ')}
       </div>
     </div>
   )

@@ -13,7 +13,7 @@ const fetchOffers = async (link, accessToken) => {
 
 export async function POST(req: Request) {
   const { link } = await req.json()
-  let accessToken = secureAccessToken()
+  let accessToken = await secureAccessToken()
   let flights
   try {
     flights = await fetchOffers(link, accessToken)
