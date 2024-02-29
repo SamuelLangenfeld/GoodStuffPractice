@@ -1,0 +1,23 @@
+MVP ->
+  clicking on a destination gives you cheap tickets, dates, and airline carrier to google. Flight number too?
+  Minimum departure date is 2 weeks out
+  Use production data -> DC origin.
+  Show airline carrier on offers.
+  Show country of origin and/or region on flight cards.
+  Cleanup code, organize. Run ChatGPT over code, see if it could do better.
+  Halfway decent UI. Check accessibility, make it pretty.
+  Better error handling. Display errors/loading on UI.
+
+STRETCH ->
+  Create AWS lambda functions to handle Amadeus API calls
+  Allow for searching cheapest date for destination
+  Allow user to store desired locations. Create a db to hold user data.
+  Store airport codes, names, country and region codes/names in db instead of Amadeus API calls.
+  Create lambda functions to check ticket prices 1/day and store them per user.
+  Allow user to change origin.
+  Allow user to click and navigate to google search page with query params based on flight.
+  Allow user to see cheapest dates for desired locations.
+  Email user 1/week with random cheap deals as well as cheap deals for desired locations.
+  Log errors.
+  Log API calls. Put in guard rails so I'm not hit with crazy bill.
+  Use CSS framework or UI component library to make it look nice.

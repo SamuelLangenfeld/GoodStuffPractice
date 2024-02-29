@@ -1,0 +1,14 @@
+.card_display {
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+}
+
+.container {
+  display: flex;
+  
+}
+
+.offer_display {
+  margin-left: 50px;
+}
