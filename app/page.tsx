@@ -9,11 +9,23 @@ export default function Page() {
   const [flights, setFlights] = useState({} as any)
   const [currentOffers, setCurrentOffers] = useState({} as any)
   const [selectedFlight, setSelectedFlight] = useState(null)
+  const [isFetching, setIsFetching] = useState(false)
   useEffect(() => {
-    fetch('/api').then(res => res.json()).then(data => {
-      const flightData: Flights = data.flights
-      setFlights(flightData)
-    })
+    const performFetch = async () => {
+      setIsFetching(true)
+      try {
+        const response = await fetch('/api')
+        const data = await response.json()
+        const flightData: Flights = data.flights
+        setFlights(flightData)
+        setIsFetching(false)
+      }
+      catch(e) {
+        setIsFetching(false)
+        console.log(JSON.stringify(e, null, 2))
+      }
+    }
+    performFetch()
   }, [])
 
   const departures = flights?.data || null
@@ -25,6 +37,7 @@ export default function Page() {
   return (
     <>
       <h1>Departures</h1>
+      {isFetching && <div>Loading ...</div>}
       <div className={styles.container}>
         <div className={styles.card_display}>
           {departures && (
